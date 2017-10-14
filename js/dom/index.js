@@ -1,22 +1,18 @@
-/*
- * Provide your answers here for the jQuery assignment
- * */
-
 //'should hide all the images from the view'
 function hideAllImages() {
-
+ $('img').hide();
 }
 //'should show all the images again'
 function showAllImages() {
-
+    
 }
 //'should change the heading to "The Best Collection"'
 function changeHeadingToTheBestCollection() {
-
+    
 }
 //'should make the hr (.line) element bolder'
 function makeHrLineElementBolder() {
-
+ 
 }
 //'should change the background of each product title with a different color'
 function changeBackgroundColorOfEachProductTitleWithDifferentColor() {
@@ -24,7 +20,7 @@ function changeBackgroundColorOfEachProductTitleWithDifferentColor() {
 }
 //'should remove the "BUY ITEM" buttons'
 function removeBuyItemButtons() {
-
+    
 }
 //'should remove the last three item from the view'
 function removeLastThreeItemsFromView() {
@@ -41,7 +37,7 @@ function renameTheProductShirtToFishShirt() {
 }
 //'should rename the first rock item to "Bird-Rock"'
 function renameTheFirstRockItemToBirdRock() {
-
+    
 }
 //'should add 5 stars to the product shirt'
 function addFiveStarsToTheProductShirt() {
@@ -53,7 +49,6 @@ function changeTheTitleNameWithARandomName() {
 }
 //'should color the stars of the third product with green'
 function colorTheStarsOfTheThirdProductWithGreen() {
-
 }
 //'should reset the last two images to the url "http://bit.ly/2xq8ev0"'
 function resetLastTwoImagesToUrl() {
@@ -76,11 +71,9 @@ function bringBackTheInitialImageAgainInsteadOfUrl() {
 
 }
 // 'should change every product desctiption to any text with at least 50 charakters'
-function changeEveryProductDescriptionToAnyTextWithAtLeast50Characters() {
-}
+function changeEveryProductDescriptionToAnyTextWithAtLeast50Characters() {}
 //'should randomly change all of the prices'
-function randomlyChangeAllOfThePrices() {
-}
+function randomlyChangeAllOfThePrices() {}
 //'should mark the background with the color yellow of the two cheapest products'
 function markTheBackgroundWithTheColorYellowOfTheTwoCheapestProducts() {
 

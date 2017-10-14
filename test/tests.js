@@ -17,14 +17,7 @@ describe("Test Suite jQuery => Each Test depends on the one above! Don't be fool
 
     it('01) should hide all the images from the view', () => {
         hideAllImages();
-        let images = $("img");
-        let imagesVisiblity = images.map((value, tag) => {
-            return $(tag).css("display") !== "none";
-        }).toArray();
-        let filteredImages = imagesVisiblity.filter((value, index) => {
-            return value;
-        });
-        filteredImages.length.should.be.equal(0);
+        $("img:visible").size().should.be.equal(0);
     });
 
     it('02) should show all the images again', () => {
