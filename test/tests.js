@@ -44,14 +44,16 @@ describe("Test Suite jQuery => Each Test depends on the one above! Don't be fool
     it('05) should change the background of each product title with a different color', () => {
         changeBackgroundColorOfEachProductTitleWithDifferentColor();
         let productTitles = $("span.thumbnail").find("h4");
-        let mappedColors = productTitles.map((index, tag) => {
-            return $(tag).css("background-color");
-        }).toArray();
-
-        let mapOfColors = mappedColors.reduce((acc, value) => {
-            return acc.set(value, 0);
-        }, new Map());
-        mapOfColors.size.should.equal(productTitles.length);
+        let colors = 
+            Array.from(productTitles)
+                .map((tag) => {
+                    return $(tag).css("background-color");
+                })
+                .reduce((acc, value) => {
+                    return acc.add(value);
+                }, new Set());
+        
+        colors.size.should.equal(productTitles.length);
     });
 
     it('06) should remove the "BUY ITEM" buttons', () => {

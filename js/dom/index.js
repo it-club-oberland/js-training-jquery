@@ -12,19 +12,23 @@ function changeHeadingToTheBestCollection() {
 }
 //'should make the hr (.line) element bolder'
 function makeHrLineElementBolder() {
- 
+    let currentWidth = parseFloat($('hr.line').first().css('border-width'));
+    $('hr.line').css('border-width', `${currentWidth+1}px`);
 }
 //'should change the background of each product title with a different color'
 function changeBackgroundColorOfEachProductTitleWithDifferentColor() {
-
+  $('span.thumbnail > h4').each(function(){
+      let hexColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+      $(this).css('backgroundColor', hexColor);
+  })
 }
 //'should remove the "BUY ITEM" buttons'
 function removeBuyItemButtons() {
-    
+    $('span .btn').hide();
 }
 //'should remove the last three item from the view'
 function removeLastThreeItemsFromView() {
-
+    $('.row .col-md-3.col-sm-6:nth-of-type(n+6)').remove();
 }
 //'should make 10% reduction on all products'
 function makeTenPercentPriceReductionOnAllProducts() {
