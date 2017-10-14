@@ -1,5 +1,5 @@
 //async icin yardimci fonksiyon
-function delay(milliseconds) {
+function delay(milliseconds, resolve) {
     return new Promise(function (resolve) {
         setTimeout(resolve, milliseconds);
     });
@@ -13,8 +13,6 @@ function delay(milliseconds) {
 //Testler birbiriyle alakalidir, isole degildir! Bu dosyada hicbisey degistirmenize gerek yok.
 describe("Test Suite jQuery => Each Test depends on the one above! Don't be fooled by passing greens in the beginning.", function () {
 
-    this.timeout(20000);
-
     it('01) should hide all the images from the view', () => {
         hideAllImages();
         $("img:visible").size().should.be.equal(0);
@@ -22,19 +20,16 @@ describe("Test Suite jQuery => Each Test depends on the one above! Don't be fool
 
     it('02) should show all the images again', () => {
         showAllImages();
-        let images = $("img");
-        let imagesVisiblity = images.map((value, tag) => {
-            return $(tag).css("display") === "none";
-        }).toArray();
-        let filteredImages = imagesVisiblity.filter((value, index) => {
-            return !value;
+        let visibleImages = Array.from($("img")).filter(function(pElm){
+            $(pElm).css('display') === 'none';
         });
-        filteredImages.length.should.be.equal(images.length);
+        
+        visibleImages.length.should.be.equal(0);  
     });
 
     it('03) should change the heading to "The Best Collection"', () => {
         changeHeadingToTheBestCollection();
-        let headingNew = $(".container").children().first().text();
+        let headingNew = $(".container > h4:first").text();
         headingNew.should.equal("The Best Collection");
     });
 

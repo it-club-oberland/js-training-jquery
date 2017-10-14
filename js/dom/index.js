@@ -1,14 +1,14 @@
 //'should hide all the images from the view'
 function hideAllImages() {
- $('img').hide();
+  $('img').hide();
 }
 //'should show all the images again'
 function showAllImages() {
-    
+  $('img').show();
 }
 //'should change the heading to "The Best Collection"'
 function changeHeadingToTheBestCollection() {
-    
+  $(".container > h4:first").text("The Best Collection");
 }
 //'should make the hr (.line) element bolder'
 function makeHrLineElementBolder() {
