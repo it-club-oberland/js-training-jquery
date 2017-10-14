@@ -13,6 +13,8 @@ function delay(milliseconds, resolve) {
 //Testler birbiriyle alakalidir, isole degildir! Bu dosyada hicbisey degistirmenize gerek yok.
 describe("Test Suite jQuery => Each Test depends on the one above! Don't be fooled by passing greens in the beginning.", function () {
 
+    this.timeout(20000);
+    
     it('01) should hide all the images from the view', () => {
         hideAllImages();
         $("img:visible").size().should.be.equal(0);
@@ -164,28 +166,32 @@ describe("Test Suite jQuery => Each Test depends on the one above! Don't be fool
 
     it('17) should show the "BUY ITEM" again with a green background, gray border and a thin shadow', () => {
         showTheBuyItemAgainWithAGreenBackgroundGrayBorderAndThinShadow();
-        let removeBuyItemButtonQuery = $("button[class='btn btn-info right']");
-        let mapOfGrayBorders = removeBuyItemButtonQuery.map((index, tag) => {
-            return $(tag).css("border-color");
-        }).toArray();
-        mapOfGrayBorders = mapOfGrayBorders.reduce((acc, value, index, arr) => {
-            return acc.set(value, 0);
-        }, new Map());
-        let mapOfShadows = removeBuyItemButtonQuery.map((index, tag) => {
-            return $(tag).css("box-shadow");
-        }).toArray().reduce((acc, value) => {
-            return acc.set(value, 0);
-        }, new Map());
-        removeBuyItemButtonQuery.size().should.be.above(4);
-        mapOfGrayBorders.size.should.equal(1);
-        mapOfShadows.size.should.equal(1);
-        mapOfGrayBorders.entries().next().value[0].should.be.equal("rgb(128, 128, 128)");
-        mapOfShadows.entries().next().value[0].should.not.be.eql("none");
+        delay(3000).then(function () { 
+        
+            let removeBuyItemButtonQuery = $("button[class='btn btn-info right js-newButtonStyle']");
+            let mapOfGrayBorders = Array.from(removeBuyItemButtonQuery).map((tag) => {
+                return $(tag).css("border-color");
+            });
+            mapOfGrayBorders = mapOfGrayBorders.reduce((acc, value, index, arr) => {
+                return acc.set(value, 0);
+            }, new Map());
+            let mapOfShadows = Array.from(removeBuyItemButtonQuery).map((tag) => {
+                return $(tag).css("box-shadow");
+            }).reduce((acc, value) => {
+                return acc.set(value, 0);
+            }, new Map());
+            removeBuyItemButtonQuery.size().should.be.above(4);
+            mapOfGrayBorders.size.should.equal(1);
+            mapOfShadows.size.should.equal(1);
+            console.dir(mapOfGrayBorders.entries())
+            mapOfGrayBorders.entries().next().value[0].should.be.equal("rgb(192, 192, 192)");
+            mapOfShadows.entries().next().value[0].should.not.be.equal("none");
+        })
     });
 
     it('18) should add an event handler to the "BUY ITEM" buttons and after a click it should show an alert', () => {
         addAnEventHandlerToTheBuyItemButtonsAndAfterClickShowAlert();
-        let removeBuyItemButtonQuery = $("button[class='btn btn-info right']");
+        let removeBuyItemButtonQuery = $("button");
 
         let clickEvents = removeBuyItemButtonQuery.map((index, tag) => {
             return $._data($(tag).get(0), 'events');

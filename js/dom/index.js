@@ -32,47 +32,80 @@ function removeLastThreeItemsFromView() {
 }
 //'should make 10% reduction on all products'
 function makeTenPercentPriceReductionOnAllProducts() {
-
+    $('.price').each(function(){
+        let price = $(this).text(); // '$29.90'
+        price = +price.replace('$', ''); // 29.90, alternative: parseFloat, parseInt, new Number()
+        $(this).text(`$${price * 0.9}`);
+    })
 }
-
 //'should rename the product shirt to "Fish-Shirt"'
 function renameTheProductShirtToFishShirt() {
-
+    $('.row .col-md-3.col-sm-6:nth-of-type(4n+1) h4').text('Fish-Shirt');
 }
 //'should rename the first rock item to "Bird-Rock"'
 function renameTheFirstRockItemToBirdRock() {
-    
+    $('.row .col-md-3.col-sm-6:nth-child(2) h4').text('Bird-Rock');
 }
 //'should add 5 stars to the product shirt'
 function addFiveStarsToTheProductShirt() {
-
+    $('.row .col-md-3.col-sm-6:nth-of-type(4n+1) .ratings span:last-child')
+        .removeClass('glyphicon-star-empty')
+        .addClass('glyphicon-star');
 }
 //'should change the title name with a random name (use alg. for randomly generating chars)'
 function changeTheTitleNameWithARandomName() {
-
+    $('.row h4').each(function(){
+        let productName = (Math.random()*1232345234523452345).toString(36).replace(/\d/g, "").toUpperCase()
+        $(this).text(productName);
+    })
 }
 //'should color the stars of the third product with green'
 function colorTheStarsOfTheThirdProductWithGreen() {
+    $('.row .col-md-3.col-sm-6:nth-child(3) .ratings span').css('color', 'green')
 }
 //'should reset the last two images to the url "http://bit.ly/2xq8ev0"'
 function resetLastTwoImagesToUrl() {
-
+    $('.row .col-md-3.col-sm-6:nth-of-type(n+4) img').each(function(){
+        $(this).data('orgimg', $(this).attr('src'));
+        $(this).attr('src', "http://bit.ly/2xq8ev0")
+    });
 }
 //'should constantly change the price (#changingPrice), increment it by one in each 3 secs.'
 function constantlyChangeThePriceAndIncrementItByOneInEachThreeSeconds() {
-
+    setInterval(function(){
+        let price = $('#changingPrice').text(); // '$29.90'
+        price = +price.replace('$', ''); // 29.90, 
+        $('#changingPrice').text(`$${price + 1}`);
+    }, 1000)
 }
+
+/* with all prices
+        $('.price').each(function(){
+            let price = $(this).text(); // '$29.90'
+            price = +price.replace('$', ''); // 29.90, 
+            $(this).text(`$${price + 1}`);
+        })
+*/
 //'should show the "BUY ITEM" again with a green background, gray border and a thin shadow'
 function showTheBuyItemAgainWithAGreenBackgroundGrayBorderAndThinShadow() {
-
+    $('span .btn')
+        .show()
+        .addClass('js-newButtonStyle');
 }
 // 'should add an event handler to the "BUY ITEM" buttons and after a click it should show an alert'
 function addAnEventHandlerToTheBuyItemButtonsAndAfterClickShowAlert() {
-
+    $('span .btn').click(function(e){
+        alert("merhaba")
+        e.preventDefault();
+    })
 }
 // 'should bring back the initial image again, instead of "http://bit.ly/2xq8ev0"'
 function bringBackTheInitialImageAgainInsteadOfUrl() {
-
+    $('img').each(function(){
+        if($(this).data('orgimg')){
+            $(this).attr('src', $(this).data('orgimg'));
+        }
+    });
 }
 // 'should change every product desctiption to any text with at least 50 charakters'
 function changeEveryProductDescriptionToAnyTextWithAtLeast50Characters() {}

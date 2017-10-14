@@ -53,3 +53,15 @@ button {    margin-top: 6px;
     font-size:13px;
     font-weight:600;
 }
+
+span.thumbnail > img{
+    width: 180px;
+    height: 200px;
+}
+
+.js-newButtonStyle{
+    background: green;
+    box-shadow: 1px 1px 1px 1px rgb(128, 128, 128) !important;
+    border-width: 1px;
+    border-color: rgb(128, 128, 128) !important;
+}
